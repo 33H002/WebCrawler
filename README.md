@@ -1,11 +1,14 @@
 # WebCrawler
+- openAPI 활용 웹크롤링 배치
 
+```
 ##
  # config.py
  ##
  
 class Base:
     PATH = {workspace}
+    
     
  class NaverAPI:
     PATH = Base.PATH
@@ -19,12 +22,15 @@ class KakaoAPI:
 
 
 class GoogleAPI:
+    PATH = Base.PATH
     API_KEY = 
 
 
 class TwitterAPI:
+    PATH = Base.PATH
     API_KEY = 
     API_SECRET = 
     BEARER_TOKEN = 
     ACCESS_TOKEN = 
     ACCESS_TOKEN_SECRET = 
+```
