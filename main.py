@@ -6,7 +6,7 @@ import sentry_sdk # TODO
 from glob import glob
 from datetime import datetime
 
-import crawler
+import src.crawler as crawler
 from config import NaverAPI, KakaoAPI
 
 

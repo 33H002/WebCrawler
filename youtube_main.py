@@ -4,7 +4,7 @@ import json
 from glob import glob
 from datetime import datetime
 
-import youtube
+import src.youtube as youtube
 from config import GoogleAPI
 
 if __name__ == "__main__":
