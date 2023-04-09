@@ -8,6 +8,7 @@
  
 class Base:
     PATH = {workspace}
+    SENTRY_DSN =
     
     
  class NaverAPI:
