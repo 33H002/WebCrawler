@@ -1,0 +1,49 @@
+# TBU
+
+apiVersion: "batch/v1beta1"
+kind: "CronJob"
+metadata:
+  name: "web-crawler"
+  namespace: test
+  labels:
+    project: web-crawler
+    crawler: web-crawler 
+spec:
+  schedule: "0 20 * * *"      # KST 05:00
+  concurrencyPolicy: "Forbid"
+  jobTemplate:
+    metadata:
+      labels:
+        project: web-crawler
+        crawler: web-crawler
+    spec:
+      #parallelism: 3
+      #completions: 3
+      template:
+        metadata:
+          labels:
+            project: web-crawler
+            crawler: web-crawler
+        spec:
+          imagePullSecrets:
+            - name: regcred
+          containers: 
+            - name: "web-crawler"
+              image: "docker.pkg.github.com/33h002/test2"
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  cp /config/config.py ./;
+                  ./bin/run-crawler.sh;
+              volumeMounts:
+                - name: config
+                  mountPath: "/config"
+          restartPolicy: OnFailure
+          volumes:
+            - name: config
+              secret:
+                secretName: config
+                items:
+                  - key: config.py
+                    path: config.py
