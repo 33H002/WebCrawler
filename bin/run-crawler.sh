@@ -3,4 +3,5 @@
 SENTRY_RELEASE=$(git rev-parse HEAD)
 export SENTRY_RELEASE
 
-python get_ir_dataset.py
+python main.py --q "웹크롤링" --save_path "."
+python youtube_main.py --q "웹크롤링" --save_path "."
