@@ -1,16 +1,25 @@
 import os
+import sys
 import argparse
 import json
+import sentry
+import logging
 import hashlib
-import sentry_sdk # TODO
 from glob import glob
 from datetime import datetime
 
 import src.crawler as crawler
+from config import Base as Config
 from config import NaverAPI, KakaoAPI
 
 
 if __name__ == "__main__":
+
+    sentry.init(Config.PROFILE, 'webcrawler')
+    logging.basicConfig(level=logging.INFO,
+                        stream=sys.stdout,
+                        format='%(asctime)s [%(filename)s] %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S') 
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--q', type=str, default='검색어')
